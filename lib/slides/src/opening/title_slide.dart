@@ -18,7 +18,7 @@ ccc
   @override
   FlutterDeckSlide build(BuildContext context) {
     return FlutterDeckSlide.title(
-      title: 'タイトル',
+      title: '大都会岡山でFlutterを盛り上げようぜって話',
       speakerInfoBuilder: (context) => const FlutterDeckSpeakerInfoWidget(
         speakerInfo: FlutterDeckSpeakerInfo(
           name: 'よわよわエンジニア',

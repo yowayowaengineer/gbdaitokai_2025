@@ -36,10 +36,6 @@ class App extends StatelessWidget {
             ),
           ),
           transition: const FlutterDeckTransition.fade(),
-          background: const FlutterDeckBackgroundConfiguration(
-            light: FlutterDeckBackground.solid(Color(0xFFB5FFFC)),
-            dark: FlutterDeckBackground.solid(Color(0xFF16222A)),
-          ),
           footer: const FlutterDeckFooterConfiguration(
             showSlideNumbers: true,
             widget: FlutterLogo(),
