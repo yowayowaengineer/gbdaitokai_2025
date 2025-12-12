@@ -3,13 +3,13 @@ import 'package:flutter_deck/flutter_deck.dart';
 
 class DoYouKnowFlutterSlide extends FlutterDeckSlideWidget {
   const DoYouKnowFlutterSlide({super.key})
-    : super(
-        configuration: const FlutterDeckSlideConfiguration(
-          route: '/do-you-know-flutter',
-          title: 'Flutterを知っていますか？',
-          header: FlutterDeckHeaderConfiguration(title: 'Flutterを知っていますか？'),
-        ),
-      );
+      : super(
+          configuration: const FlutterDeckSlideConfiguration(
+            route: '/do-you-know-flutter',
+            title: 'Flutterを知っていますか？',
+            header: FlutterDeckHeaderConfiguration(title: 'Flutterを知っていますか？'),
+          ),
+        );
 
   @override
   FlutterDeckSlide build(BuildContext context) {
@@ -41,118 +41,89 @@ class _DoYouKnowFlutterSlideContentState
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
-    final imageSize = 200.0; // 画像サイズ
-    final padding = 40.0; // 余白（小さく調整）
-    final headerHeight = 120.0; // ヘッダー分の高さを考慮
-    final footerHeight = 80.0; // フッター分の高さを考慮
+    const imageSize = 200.0;
+    const padding = 80.0; // 固定の余白
 
     return GestureDetector(
       onTap: _onTap,
       behavior: HitTestBehavior.opaque,
       child: Stack(
         children: [
-          // 背景（クリック可能エリア）
-          Container(
-            color: Colors.transparent,
-            width: double.infinity,
-            height: double.infinity,
-          ),
           // 1つ目: FlutterLogo（左上）
           if (_currentIndex >= 1)
             Positioned(
               left: padding,
-              top: headerHeight + padding,
-              child: Container(
-                width: imageSize,
-                height: imageSize,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.2),
-                      blurRadius: 10,
-                      spreadRadius: 2,
-                    ),
-                  ],
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: Container(
-                    color: Colors.white,
-                    child: FlutterLogo(size: imageSize),
-                  ),
-                ),
+              top: padding,
+              child: _buildImageContainer(
+                child: FlutterLogo(size: imageSize),
+                size: imageSize,
               ),
             ),
           // 2つ目: riverpod.png（中央）
           if (_currentIndex >= 2)
             Positioned(
-              left: (screenWidth - imageSize) / 2,
-              top:
-                  headerHeight +
-                  (screenHeight - headerHeight - footerHeight - imageSize) / 2,
-              child: Container(
-                width: imageSize,
-                height: imageSize,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.2),
-                      blurRadius: 10,
-                      spreadRadius: 2,
-                    ),
-                  ],
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: Container(
-                    color: Colors.white,
-                    child: Image.asset(
-                      'assets/images/riverpod.png',
-                      fit: BoxFit.contain,
-                      width: imageSize,
-                      height: imageSize,
-                    ),
+              left: 0,
+              right: 0,
+              top: 0,
+              bottom: 0,
+              child: Center(
+                child: _buildImageContainer(
+                  child: Image.asset(
+                    'assets/images/riverpod.png',
+                    fit: BoxFit.contain,
+                    width: imageSize,
+                    height: imageSize,
                   ),
+                  size: imageSize,
                 ),
               ),
             ),
           // 3つ目: dart.webp（右下）
           if (_currentIndex >= 3)
             Positioned(
-              left: screenWidth - imageSize - padding,
-              top: screenHeight - footerHeight - imageSize - padding,
-              child: Container(
-                width: imageSize,
-                height: imageSize,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.2),
-                      blurRadius: 10,
-                      spreadRadius: 2,
-                    ),
-                  ],
+              right: padding,
+              bottom: padding,
+              child: _buildImageContainer(
+                child: Image.asset(
+                  'assets/images/dart.webp',
+                  fit: BoxFit.contain,
+                  width: imageSize,
+                  height: imageSize,
                 ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: Container(
-                    color: Colors.white,
-                    child: Image.asset(
-                      'assets/images/dart.webp',
-                      fit: BoxFit.contain,
-                      width: imageSize,
-                      height: imageSize,
-                    ),
-                  ),
-                ),
+                size: imageSize,
               ),
             ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildImageContainer({
+    required Widget child,
+    required double size,
+  }) {
+    return Container(
+      width: size,
+      height: size,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.2),
+            blurRadius: 10,
+            spreadRadius: 2,
+          ),
+        ],
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(8),
+        child: Container(
+          color: Colors.white,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: child,
+          ),
+        ),
       ),
     );
   }
