@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_deck/flutter_deck.dart';
 import 'package:gap/gap.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class TalentExistenceSlide extends FlutterDeckSlideWidget {
   const TalentExistenceSlide({super.key})
@@ -38,6 +39,13 @@ class _TalentExistenceSlideContentState
         _visibleCount++;
       }
     });
+  }
+
+  Future<void> _openQiitaUrl() async {
+    final url = Uri.parse('https://qiita.com/advent-calendar/2025/flutter');
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url, mode: LaunchMode.externalApplication);
+    }
   }
 
   @override
@@ -120,25 +128,66 @@ class _TalentExistenceSlideContentState
               Expanded(
                 flex: 1,
                 child: Center(
-                  child: Container(
-                    width: 400,
-                    height: 400,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.1),
-                          blurRadius: 10,
-                          spreadRadius: 2,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      // 円形の画像
+                      Container(
+                        width: 350,
+                        height: 350,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.1),
+                              blurRadius: 10,
+                              spreadRadius: 2,
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                    child: ClipOval(
-                      child: Image.asset(
-                        'assets/images/yakuran.jpg',
-                        fit: BoxFit.cover,
+                        child: ClipOval(
+                          child: Image.asset(
+                            'assets/images/yakuran.jpg',
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                       ),
-                    ),
+                      const Gap(32),
+                      // QRコード画像（クリック可能）
+                      GestureDetector(
+                        onTap: _openQiitaUrl,
+                        child: MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: Container(
+                            constraints: const BoxConstraints(
+                              maxWidth: 100,
+                              maxHeight: 100,
+                            ),
+                            child: Image.asset(
+                              'assets/images/QR_yakuran.png',
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const Gap(8),
+                      // 説明文字（クリック可能）
+                      GestureDetector(
+                        onTap: _openQiitaUrl,
+                        child: MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: Text(
+                            'Qiita - Flutter Advent Calendar 2025',
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.blue[600],
+                              decoration: TextDecoration.underline,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
