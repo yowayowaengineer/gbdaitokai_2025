@@ -39,7 +39,7 @@ class WhoAmISlide2 extends FlutterDeckSlideWidget {
                   const Text('くらもとやすひろ', style: TextStyle(fontSize: 40)),
                   const Gap(40),
                   const Text(
-                    'ピープルさんはFlutterアプリ開発の実績が多数ある',
+                    '✨ ピープルさんはFlutterアプリ開発の実績が多数ある',
                     style: TextStyle(fontSize: 24),
                   ),
                 ],
