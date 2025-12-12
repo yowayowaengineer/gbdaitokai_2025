@@ -5,8 +5,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gbdaitokai_2025/l10n/app_localizations.dart';
 import 'package:gbdaitokai_2025/slides/slides.dart';
 
-class App extends StatelessWidget {
+class App extends StatefulWidget {
   const App({super.key});
+
+  @override
+  State<App> createState() => _AppState();
+}
+
+class _AppState extends State<App> {
+  final GlobalKey<_AnimatedFooterWidgetState> _footerWidgetKey =
+      GlobalKey<_AnimatedFooterWidgetState>();
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +22,6 @@ class App extends StatelessWidget {
       designSize: const Size(1920, 1080),
       builder: (context, child) => FlutterDeckApp(
         slides: slides,
-
         configuration: FlutterDeckConfiguration(
           controls: const FlutterDeckControlsConfiguration(
             presenterToolbarVisible: true,
@@ -38,11 +45,9 @@ class App extends StatelessWidget {
           transition: const FlutterDeckTransition.fade(),
           footer: FlutterDeckFooterConfiguration(
             showSlideNumbers: true,
-            widget: const _AnimatedFooterWidget(),
+            widget: _AnimatedFooterWidget(key: _footerWidgetKey),
           ),
         ),
-
-        // intl
         locale: const Locale('ja'),
         localizationsDelegates: L10n.localizationsDelegates,
         supportedLocales: L10n.supportedLocales,
@@ -52,7 +57,7 @@ class App extends StatelessWidget {
 }
 
 class _AnimatedFooterWidget extends StatefulWidget {
-  const _AnimatedFooterWidget();
+  const _AnimatedFooterWidget({super.key});
 
   @override
   State<_AnimatedFooterWidget> createState() => _AnimatedFooterWidgetState();
@@ -74,8 +79,7 @@ class _AnimatedFooterWidgetState extends State<_AnimatedFooterWidget>
   void initState() {
     super.initState();
     _controller = AnimationController(
-      // 1往復の時間
-      duration: const Duration(seconds: 30),
+      duration: const Duration(minutes: 10),
       vsync: this,
     )..repeat();
 
@@ -87,7 +91,6 @@ class _AnimatedFooterWidgetState extends State<_AnimatedFooterWidget>
       curve: Curves.linear,
     ));
 
-    // 方向が変わるタイミングで画像も変更
     _controller.addListener(() {
       final previousDirection = _isMovingRight;
       _isMovingRight = _animation.value >= 0.5;
@@ -111,11 +114,11 @@ class _AnimatedFooterWidgetState extends State<_AnimatedFooterWidget>
     final imageSize = 50.0;
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-    final footerTop = screenHeight * 0.89; // フッターの上の位置
-    const logoWidth = 100.0; // ロゴの幅
-    const logoPosition = logoWidth; // ロゴの右端の位置（方向転換ポイント）
-    const rightMargin = 100.0; // 右端の余白
-    final rightEndPosition = screenWidth - rightMargin; // 右端の位置（余白を考慮）
+    final footerTop = screenHeight * 0.89;
+    const logoWidth = 100.0;
+    const logoPosition = logoWidth;
+    const rightMargin = 100.0;
+    final rightEndPosition = screenWidth - rightMargin;
 
     return UnconstrainedBox(
       constrainedAxis: Axis.horizontal,
@@ -125,7 +128,6 @@ class _AnimatedFooterWidgetState extends State<_AnimatedFooterWidget>
         child: Stack(
           clipBehavior: Clip.none,
           children: [
-            // 元のロゴ（固定表示）
             Center(
               child: Image.asset(
                 'assets/images/logo_512x512.png',
@@ -134,23 +136,17 @@ class _AnimatedFooterWidgetState extends State<_AnimatedFooterWidget>
                 fit: BoxFit.contain,
               ),
             ),
-            // アニメーション画像（画面全体を移動）
             AnimatedBuilder(
               animation: _animation,
               builder: (context, child) {
                 double position;
 
                 if (_animation.value <= 0.5) {
-                  // 右から左へ（0.0から0.5の間）
-                  // 右端（rightEndPosition）からロゴの右端（logoPosition）へ
-                  final progress = _animation.value * 2.0; // 0.0から1.0に正規化
+                  final progress = _animation.value * 2.0;
                   position = rightEndPosition -
                       (rightEndPosition - logoPosition + imageSize) * progress;
                 } else {
-                  // 左から右へ（0.5から1.0の間）
-                  // ロゴの右端（logoPosition）から右端（rightEndPosition）へ
-                  final progress =
-                      (_animation.value - 0.5) * 2.0; // 0.0から1.0に正規化
+                  final progress = (_animation.value - 0.5) * 2.0;
                   position = logoPosition -
                       imageSize +
                       (rightEndPosition - logoPosition + imageSize) * progress;
@@ -158,14 +154,13 @@ class _AnimatedFooterWidgetState extends State<_AnimatedFooterWidget>
 
                 return Positioned(
                   left: position,
-                  top: footerTop - (screenHeight * 0.9), // フッターの上に配置
+                  top: footerTop - (screenHeight * 0.9),
                   child: Image.asset(
                     _imagePaths[_imageIndex],
                     width: imageSize,
                     height: imageSize,
                     fit: BoxFit.contain,
                     errorBuilder: (context, error, stackTrace) {
-                      // 画像が読み込めない場合のフォールバック
                       return SizedBox(
                         width: imageSize,
                         height: imageSize,
