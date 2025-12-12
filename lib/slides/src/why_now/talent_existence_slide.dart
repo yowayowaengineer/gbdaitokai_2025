@@ -70,28 +70,51 @@ class _TalentExistenceSlideContentState
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     if (_visibleCount >= 1)
-                      const Text(
-                        '✨ 当時コンテストに参加した「やくらん」氏',
-                        style: TextStyle(fontSize: 24),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.arrow_forward,
+                            color: Colors.blue[700],
+                            size: 24,
+                          ),
+                          const SizedBox(width: 8),
+                          const Text(
+                            '当時コンテストに参加した「やくらん」氏',
+                            style: TextStyle(fontSize: 24),
+                          ),
+                        ],
                       ),
                     if (_visibleCount >= 1) const Gap(24),
                     if (_visibleCount >= 2)
-                      Text.rich(
-                        TextSpan(
-                          style: const TextStyle(fontSize: 24),
-                          children: const [
-                            TextSpan(text: '✨ コンテスト以降、'),
-                            TextSpan(
-                              text: '仕事そっちのけで',
-                              style: TextStyle(
-                                decoration: TextDecoration.lineThrough,
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.arrow_forward,
+                            color: Colors.blue[700],
+                            size: 24,
+                          ),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: Text.rich(
+                              TextSpan(
+                                style: const TextStyle(fontSize: 24),
+                                children: const [
+                                  TextSpan(text: 'コンテスト以降、'),
+                                  TextSpan(
+                                    text: '仕事そっちのけで',
+                                    style: TextStyle(
+                                      decoration: TextDecoration.lineThrough,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text:
+                                        ' Flutterの力をメキメキとつけ、個人的にお仕事の依頼を受けるほどに',
+                                  ),
+                                ],
                               ),
                             ),
-                            TextSpan(
-                              text: ' Flutterの力をメキメキとつけ、個人的にお仕事の依頼を受けるほどに',
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     if (_visibleCount >= 2) const Gap(24),
                     if (_visibleCount >= 3)
@@ -104,21 +127,57 @@ class _TalentExistenceSlideContentState
                       ),
                     if (_visibleCount >= 3) const Gap(24),
                     if (_visibleCount >= 4)
-                      const Text(
-                        '✨ Flutter界隈で活発に活動していて、FlutterKaigiでもかなりの存在感を示していた',
-                        style: TextStyle(fontSize: 24),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.arrow_forward,
+                            color: Colors.blue[700],
+                            size: 24,
+                          ),
+                          const SizedBox(width: 8),
+                          const Expanded(
+                            child: Text(
+                              'Flutter界隈で活発に活動していて、FlutterKaigiでもかなりの存在感を示していた',
+                              style: TextStyle(fontSize: 24),
+                            ),
+                          ),
+                        ],
                       ),
                     if (_visibleCount >= 4) const Gap(24),
                     if (_visibleCount >= 5)
-                      const Text(
-                        '✨ そんな彼曰く「岡山に（Flutterの）知り合いいないんですよね」',
-                        style: TextStyle(fontSize: 32),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.arrow_forward,
+                            color: Colors.blue[700],
+                            size: 32,
+                          ),
+                          const SizedBox(width: 8),
+                          const Expanded(
+                            child: Text(
+                              'そんな彼曰く「岡山に（Flutterの）知り合いいないんですよね」',
+                              style: TextStyle(fontSize: 32),
+                            ),
+                          ),
+                        ],
                       ),
                     if (_visibleCount >= 5) const Gap(24),
                     if (_visibleCount >= 6)
-                      const Text(
-                        '✨ それなら作るしかない！',
-                        style: TextStyle(fontSize: 40),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.arrow_forward,
+                            color: Colors.blue[700],
+                            size: 40,
+                          ),
+                          const SizedBox(width: 8),
+                          const Expanded(
+                            child: Text(
+                              'それなら作るしかない！',
+                              style: TextStyle(fontSize: 40),
+                            ),
+                          ),
+                        ],
                       ),
                   ],
                 ),

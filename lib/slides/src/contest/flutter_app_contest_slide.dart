@@ -27,24 +27,90 @@ class FlutterAppContestSlide extends FlutterDeckSlideWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
-                    '✨ 実施したのは2019年12月～ （Flutter1.0公開の1年後）',
-                    style: TextStyle(fontSize: 24),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.arrow_forward,
+                        color: Colors.blue[700],
+                        size: 24,
+                      ),
+                      const SizedBox(width: 8),
+                      const Expanded(
+                        child: Text(
+                          '実施したのは2019年12月～ （Flutter1.0公開の1年後）',
+                          style: TextStyle(fontSize: 24),
+                        ),
+                      ),
+                    ],
                   ),
                   const Gap(24),
-                  const Text('✨ 会社内で参加者をつのり開催', style: TextStyle(fontSize: 24)),
-                  const Gap(24),
-                  const Text(
-                    '✨ 翌2020年の新入社員を審査員として採用',
-                    style: TextStyle(fontSize: 24),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.arrow_forward,
+                        color: Colors.blue[700],
+                        size: 24,
+                      ),
+                      const SizedBox(width: 8),
+                      const Expanded(
+                        child: Text(
+                          '会社内で参加者をつのり開催',
+                          style: TextStyle(fontSize: 24),
+                        ),
+                      ),
+                    ],
                   ),
                   const Gap(24),
-                  const Text(
-                    '✨ 表彰式は2020年の全体会議（全社員が集まる会議）で実施',
-                    style: TextStyle(fontSize: 24),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.arrow_forward,
+                        color: Colors.blue[700],
+                        size: 24,
+                      ),
+                      const SizedBox(width: 8),
+                      const Expanded(
+                        child: Text(
+                          '翌2020年の新入社員を審査員として採用',
+                          style: TextStyle(fontSize: 24),
+                        ),
+                      ),
+                    ],
                   ),
                   const Gap(24),
-                  const Text('✨ 入賞者には賞金も出した', style: TextStyle(fontSize: 24)),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.arrow_forward,
+                        color: Colors.blue[700],
+                        size: 24,
+                      ),
+                      const SizedBox(width: 8),
+                      const Expanded(
+                        child: Text(
+                          '表彰式は2020年の全体会議（全社員が集まる会議）で実施',
+                          style: TextStyle(fontSize: 24),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const Gap(24),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.arrow_forward,
+                        color: Colors.blue[700],
+                        size: 24,
+                      ),
+                      const SizedBox(width: 8),
+                      const Expanded(
+                        child: Text(
+                          '入賞者には賞金も出した',
+                          style: TextStyle(fontSize: 24),
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),

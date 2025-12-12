@@ -29,19 +29,55 @@ class WhoAmISlide4 extends FlutterDeckSlideWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
-                    '✨ 最近エンジニアコミュニティに参加するようになった（できるようになった）',
-                    style: TextStyle(fontSize: 24),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.arrow_forward,
+                        color: Colors.blue[700],
+                        size: 24,
+                      ),
+                      const SizedBox(width: 8),
+                      const Expanded(
+                        child: Text(
+                          '最近エンジニアコミュニティに参加するようになった（できるようになった）',
+                          style: TextStyle(fontSize: 24),
+                        ),
+                      ),
+                    ],
                   ),
                   const Gap(24),
-                  const Text(
-                    '✨ OSOの運営に入ったことで視野が広がった',
-                    style: TextStyle(fontSize: 24),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.arrow_forward,
+                        color: Colors.blue[700],
+                        size: 24,
+                      ),
+                      const SizedBox(width: 8),
+                      const Expanded(
+                        child: Text(
+                          'OSOの運営に入ったことで視野が広がった',
+                          style: TextStyle(fontSize: 24),
+                        ),
+                      ),
+                    ],
                   ),
                   const Gap(40),
-                  const Text(
-                    '✨ なにか自分でもコミュニティを立ち上げたい！',
-                    style: TextStyle(fontSize: 24),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.arrow_forward,
+                        color: Colors.blue[700],
+                        size: 24,
+                      ),
+                      const SizedBox(width: 8),
+                      const Expanded(
+                        child: Text(
+                          'なにか自分でもコミュニティを立ち上げたい！',
+                          style: TextStyle(fontSize: 24),
+                        ),
+                      ),
+                    ],
                   ),
                   const Gap(24),
                   Padding(

@@ -54,21 +54,57 @@ class _WhyNowSlideContentState extends State<_WhyNowSlideContent> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               if (_visibleCount >= 1)
-                const Text(
-                  '✨ コンテストでFlutterを継続的に学習する人は生まれたものの（岡山で）Flutterのお仕事がなかった',
-                  style: TextStyle(fontSize: 24),
+                Row(
+                  children: [
+                    Icon(
+                      Icons.arrow_forward,
+                      color: Colors.blue[700],
+                      size: 24,
+                    ),
+                    const SizedBox(width: 8),
+                    const Expanded(
+                      child: Text(
+                        'コンテストでFlutterを継続的に学習する人は生まれたものの（岡山で）Flutterのお仕事がなかった',
+                        style: TextStyle(fontSize: 24),
+                      ),
+                    ),
+                  ],
                 ),
               if (_visibleCount >= 1) const Gap(40),
               if (_visibleCount >= 2)
-                const Text(
-                  '✨ 新型コロナウイルスの登場以降、フルリモート案件が増えFlutterのお仕事ができるようになった',
-                  style: TextStyle(fontSize: 32),
+                Row(
+                  children: [
+                    Icon(
+                      Icons.arrow_forward,
+                      color: Colors.blue[700],
+                      size: 32,
+                    ),
+                    const SizedBox(width: 8),
+                    const Expanded(
+                      child: Text(
+                        '新型コロナウイルスの登場以降、フルリモート案件が増えFlutterのお仕事ができるようになった',
+                        style: TextStyle(fontSize: 32),
+                      ),
+                    ),
+                  ],
                 ),
               if (_visibleCount >= 2) const Gap(40),
               if (_visibleCount >= 3)
-                const Text(
-                  '✨ 自身としてFlutterの実績ができたので、またあの時（コンテストの時）のように仲間を作って盛り上げていきたい',
-                  style: TextStyle(fontSize: 40),
+                Row(
+                  children: [
+                    Icon(
+                      Icons.arrow_forward,
+                      color: Colors.blue[700],
+                      size: 40,
+                    ),
+                    const SizedBox(width: 8),
+                    const Expanded(
+                      child: Text(
+                        '自身としてFlutterの実績ができたので、またあの時（コンテストの時）のように仲間を作って盛り上げていきたい',
+                        style: TextStyle(fontSize: 40),
+                      ),
+                    ),
+                  ],
                 ),
             ],
           ),
