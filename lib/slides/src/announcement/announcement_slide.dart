@@ -5,13 +5,13 @@ import 'package:url_launcher/url_launcher.dart';
 
 class AnnouncementSlide extends FlutterDeckSlideWidget {
   const AnnouncementSlide({super.key})
-    : super(
-        configuration: const FlutterDeckSlideConfiguration(
-          route: '/announcement',
-          title: '告知',
-          header: FlutterDeckHeaderConfiguration(title: '告知！'),
-        ),
-      );
+      : super(
+          configuration: const FlutterDeckSlideConfiguration(
+            route: '/announcement',
+            title: '告知',
+            header: FlutterDeckHeaderConfiguration(title: '告知！'),
+          ),
+        );
 
   @override
   FlutterDeckSlide build(BuildContext context) {
@@ -24,11 +24,10 @@ class AnnouncementSlide extends FlutterDeckSlideWidget {
 class _AnnouncementSlideContent extends StatelessWidget {
   const _AnnouncementSlideContent();
 
-  // TODO: リンクURLを後で修正してください
   Future<void> _openUrl() async {
     final url = Uri.parse(
-      'https://okayama-dot-flutter.connpass.com/',
-    ); // TODO: 実際のURLに変更
+      'https://okayama-dot-flutter.connpass.com/event/378340/',
+    );
     if (await canLaunchUrl(url)) {
       await launchUrl(url, mode: LaunchMode.externalApplication);
     }
@@ -103,7 +102,6 @@ class _AnnouncementSlideContent extends StatelessWidget {
           ),
           const SizedBox(width: 32),
           // 右側: 画像（クリック可能）
-          // TODO: 画像パスとリンクURLを後で修正してください
           Expanded(
             flex: 1,
             child: Center(
@@ -112,17 +110,20 @@ class _AnnouncementSlideContent extends StatelessWidget {
                 child: MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: Container(
-                    constraints: const BoxConstraints(
-                      maxWidth: 500,
-                      maxHeight: 500,
-                    ),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          blurRadius: 10,
+                          spreadRadius: 2,
+                        ),
+                      ],
                     ),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(12),
                       child: Image.asset(
-                        'assets/images/logo_word_512x512.webp', // TODO: 実際の画像パスに変更
+                        'assets/images/connpass.webp',
                         fit: BoxFit.contain,
                       ),
                     ),
