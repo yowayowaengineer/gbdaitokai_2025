@@ -36,9 +36,16 @@ class App extends StatelessWidget {
             ),
           ),
           transition: const FlutterDeckTransition.fade(),
-          footer: const FlutterDeckFooterConfiguration(
+          footer: FlutterDeckFooterConfiguration(
             showSlideNumbers: true,
-            widget: FlutterLogo(),
+            widget: SizedBox(
+              width: 40,
+              height: 40,
+              child: Image.asset(
+                'assets/images/logo_512x512.png',
+                fit: BoxFit.contain,
+              ),
+            ),
           ),
         ),
 
