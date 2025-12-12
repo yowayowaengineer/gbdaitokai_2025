@@ -15,7 +15,7 @@ class RecruitmentSlide extends FlutterDeckSlideWidget {
   FlutterDeckSlide build(BuildContext context) {
     return FlutterDeckSlide.blank(
       builder: (context) => Padding(
-        padding: const EdgeInsets.all(48.0),
+        padding: const EdgeInsets.symmetric(horizontal: 80.0, vertical: 48.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
