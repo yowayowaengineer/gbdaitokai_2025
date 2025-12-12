@@ -8,7 +8,7 @@ class FlutterTimelineSlide extends FlutterDeckSlideWidget {
         configuration: const FlutterDeckSlideConfiguration(
           route: '/flutter-timeline',
           title: 'Flutter年表',
-          header: FlutterDeckHeaderConfiguration(title: 'Flutterを知っていますか？'),
+          header: FlutterDeckHeaderConfiguration(title: 'Flutterの軌跡'),
         ),
       );
 

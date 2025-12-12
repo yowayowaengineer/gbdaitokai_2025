@@ -11,10 +11,10 @@ import 'package:gbdaitokai_2025/slides/src/me/who_am_i_1_slide.dart';
 import 'package:gbdaitokai_2025/slides/src/me/who_am_i_2_slide.dart';
 import 'package:gbdaitokai_2025/slides/src/me/who_am_i_3_slide.dart';
 import 'package:gbdaitokai_2025/slides/src/me/who_am_i_4_slide.dart';
+import 'package:gbdaitokai_2025/slides/src/opening/do_you_know_flutter_slide.dart';
 import 'package:gbdaitokai_2025/slides/src/opening/flutter_growth_slide.dart';
 import 'package:gbdaitokai_2025/slides/src/opening/flutter_timeline_slide.dart';
 import 'package:gbdaitokai_2025/slides/src/opening/icebreak_slide.dart';
-import 'package:gbdaitokai_2025/slides/src/opening/title_slide.dart';
 import 'package:gbdaitokai_2025/slides/src/why_now/enjoy_flutter_growth_slide.dart';
 import 'package:gbdaitokai_2025/slides/src/why_now/talent_existence_slide.dart';
 import 'package:gbdaitokai_2025/slides/src/why_now/why_now_slide.dart';
@@ -22,7 +22,7 @@ import 'package:gbdaitokai_2025/slides/src/why_now/why_now_slide.dart';
 List<FlutterDeckSlideWidget> get slides => [
   // オープニング
   const IcebreakSlide(),
-  const TitleSlide(),
+  const DoYouKnowFlutterSlide(),
   const FlutterTimelineSlide(),
   const FlutterGrowthSlide(),
 
