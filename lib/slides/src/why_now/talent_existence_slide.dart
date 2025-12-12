@@ -5,13 +5,13 @@ import 'package:url_launcher/url_launcher.dart';
 
 class TalentExistenceSlide extends FlutterDeckSlideWidget {
   const TalentExistenceSlide({super.key})
-    : super(
-        configuration: const FlutterDeckSlideConfiguration(
-          route: '/talent-existence',
-          title: 'タレントの存在',
-          header: FlutterDeckHeaderConfiguration(title: 'なぜ今なのか（タレントの存在）'),
-        ),
-      );
+      : super(
+          configuration: const FlutterDeckSlideConfiguration(
+            route: '/talent-existence',
+            title: 'タレントの存在',
+            header: FlutterDeckHeaderConfiguration(title: 'なぜ今なのか（タレントの存在）'),
+          ),
+        );
 
   @override
   FlutterDeckSlide build(BuildContext context) {
@@ -43,6 +43,13 @@ class _TalentExistenceSlideContentState
 
   Future<void> _openQiitaUrl() async {
     final url = Uri.parse('https://qiita.com/advent-calendar/2025/flutter');
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url, mode: LaunchMode.externalApplication);
+    }
+  }
+
+  Future<void> _openXUrl() async {
+    final url = Uri.parse('https://x.com/yakuran1');
     if (await canLaunchUrl(url)) {
       await launchUrl(url, mode: LaunchMode.externalApplication);
     }
@@ -190,24 +197,30 @@ class _TalentExistenceSlideContentState
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      // 円形の画像
-                      Container(
-                        width: 350,
-                        height: 350,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.1),
-                              blurRadius: 10,
-                              spreadRadius: 2,
+                      // 円形の画像（クリック可能）
+                      GestureDetector(
+                        onTap: _openXUrl,
+                        child: MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: Container(
+                            width: 350,
+                            height: 350,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.1),
+                                  blurRadius: 10,
+                                  spreadRadius: 2,
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                        child: ClipOval(
-                          child: Image.asset(
-                            'assets/images/yakuran.jpg',
-                            fit: BoxFit.cover,
+                            child: ClipOval(
+                              child: Image.asset(
+                                'assets/images/yakuran.jpg',
+                                fit: BoxFit.cover,
+                              ),
+                            ),
                           ),
                         ),
                       ),

@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_deck/flutter_deck.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class WhoAmISlide3 extends FlutterDeckSlideWidget {
   const WhoAmISlide3({super.key})
-    : super(
-        configuration: const FlutterDeckSlideConfiguration(
-          route: '/who-am-i-3',
-          title: '自己紹介③',
-          header: FlutterDeckHeaderConfiguration(
-            title: 'よわよわエンジニア is 誰 (エンジニアな話)',
+      : super(
+          configuration: const FlutterDeckSlideConfiguration(
+            route: '/who-am-i-3',
+            title: '自己紹介③',
+            header: FlutterDeckHeaderConfiguration(
+              title: 'よわよわエンジニア is 誰 (エンジニアな話)',
+            ),
           ),
-        ),
-      );
+        );
 
   @override
   FlutterDeckSlide build(BuildContext context) {
@@ -47,6 +48,15 @@ class _WhoAmISlide3ContentState extends State<_WhoAmISlide3Content> {
     }
   }
 
+  Future<void> _openUrl() async {
+    final url = Uri.parse(
+      'https://pub.dev/packages/gradient_like_css',
+    );
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url, mode: LaunchMode.externalApplication);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -74,29 +84,41 @@ class _WhoAmISlide3ContentState extends State<_WhoAmISlide3Content> {
                 : 100 + offsetX;
             final top = index >= 3 ? 20 + (index - 3) * 50.0 : 20 + offsetY;
 
+            // 6枚目（index == 5）だけクリック可能にする
+            final isLastImage = index == 5;
+            final imageWidget = Container(
+              constraints: const BoxConstraints(
+                maxWidth: 600,
+                maxHeight: 800,
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.2),
+                    blurRadius: 10,
+                    spreadRadius: 2,
+                  ),
+                ],
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: Image.asset(_imagePaths[index], fit: BoxFit.contain),
+              ),
+            );
+
             return Positioned(
               left: left,
               top: top,
-              child: Container(
-                constraints: const BoxConstraints(
-                  maxWidth: 600,
-                  maxHeight: 800,
-                ),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.2),
-                      blurRadius: 10,
-                      spreadRadius: 2,
-                    ),
-                  ],
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: Image.asset(_imagePaths[index], fit: BoxFit.contain),
-                ),
-              ),
+              child: isLastImage
+                  ? GestureDetector(
+                      onTap: _openUrl,
+                      child: MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: imageWidget,
+                      ),
+                    )
+                  : imageWidget,
             );
           }),
         ],

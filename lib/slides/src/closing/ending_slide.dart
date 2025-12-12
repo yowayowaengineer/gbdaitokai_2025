@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_deck/flutter_deck.dart';
 
@@ -13,40 +14,92 @@ class EndingSlide extends FlutterDeckSlideWidget {
   @override
   FlutterDeckSlide build(BuildContext context) {
     return FlutterDeckSlide.blank(
-      builder: (context) => Container(
-        width: double.infinity,
-        height: double.infinity,
-        color: Colors.transparent,
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 80.0),
-            child: FittedBox(
-              fit: BoxFit.contain,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    '岡山でFlutterを盛り上げようぜ',
-                    style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                          fontSize: 200,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blue[700],
-                          height: 1.2,
-                        ),
-                    textAlign: TextAlign.center,
+      builder: (context) => const _EndingSlideContent(),
+    );
+  }
+}
+
+class _EndingSlideContent extends StatefulWidget {
+  const _EndingSlideContent();
+
+  @override
+  State<_EndingSlideContent> createState() => _EndingSlideContentState();
+}
+
+class _EndingSlideContentState extends State<_EndingSlideContent> {
+  bool _firstTextCompleted = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final textStyle1 = Theme.of(context).textTheme.displayLarge?.copyWith(
+          fontSize: 200,
+          fontWeight: FontWeight.bold,
+          color: Colors.blue[700],
+          height: 1.2,
+        );
+    final textStyle2 = Theme.of(context).textTheme.displayLarge?.copyWith(
+          fontSize: 120,
+          fontWeight: FontWeight.bold,
+          color: Colors.blue[700],
+          height: 1.2,
+        );
+
+    return Container(
+      width: double.infinity,
+      height: double.infinity,
+      color: Colors.transparent,
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 80.0),
+          child: FittedBox(
+            fit: BoxFit.contain,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                // 1行目（常に表示）
+                DefaultTextStyle(
+                  style: textStyle1 ?? const TextStyle(),
+                  textAlign: TextAlign.center,
+                  child: AnimatedTextKit(
+                    animatedTexts: [
+                      TypewriterAnimatedText(
+                        '岡山でFlutterを盛り上げようぜ',
+                        textStyle: textStyle1,
+                        speed: const Duration(milliseconds: 100),
+                      ),
+                    ],
+                    isRepeatingAnimation: false,
+                    totalRepeatCount: 1,
+                    onFinished: () {
+                      // 1行目が完了したら、少し待ってから2行目を開始
+                      Future.delayed(const Duration(milliseconds: 500), () {
+                        if (mounted) {
+                          setState(() {
+                            _firstTextCompleted = true;
+                          });
+                        }
+                      });
+                    },
                   ),
-                  Text(
-                    'って話',
-                    style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                          fontSize: 120,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blue[700],
-                          height: 1.2,
-                        ),
+                ),
+                // 2行目（1行目が完了してから表示）
+                if (_firstTextCompleted)
+                  DefaultTextStyle(
+                    style: textStyle2 ?? const TextStyle(),
                     textAlign: TextAlign.center,
+                    child: AnimatedTextKit(
+                      animatedTexts: [
+                        TypewriterAnimatedText(
+                          'って話',
+                          textStyle: textStyle2,
+                          speed: const Duration(milliseconds: 100),
+                        ),
+                      ],
+                      isRepeatingAnimation: false,
+                      totalRepeatCount: 1,
+                    ),
                   ),
-                ],
-              ),
+              ],
             ),
           ),
         ),
