@@ -1,4 +1,10 @@
 import 'package:flutter_deck/flutter_deck.dart';
+import 'package:gbdaitokai_2025/slides/src/announcement/announcement_slide.dart';
+import 'package:gbdaitokai_2025/slides/src/announcement/recruitment_slide.dart';
+import 'package:gbdaitokai_2025/slides/src/closing/ending_slide.dart';
+import 'package:gbdaitokai_2025/slides/src/community/our_community_1_slide.dart';
+import 'package:gbdaitokai_2025/slides/src/community/our_community_2_slide.dart';
+import 'package:gbdaitokai_2025/slides/src/community/our_community_3_slide.dart';
 import 'package:gbdaitokai_2025/slides/src/contest/contest_purpose_slide.dart';
 import 'package:gbdaitokai_2025/slides/src/contest/flutter_app_contest_slide.dart';
 import 'package:gbdaitokai_2025/slides/src/me/who_am_i_1_slide.dart';
@@ -34,4 +40,16 @@ List<FlutterDeckSlideWidget> get slides => [
   const WhyNowSlide(),
   const EnjoyFlutterGrowthSlide(),
   const TalentExistenceSlide(),
+
+  // コミュニティ
+  const OurCommunity1Slide(),
+  const OurCommunity2Slide(),
+  const OurCommunity3Slide(),
+
+  // 告知
+  const AnnouncementSlide(),
+  const RecruitmentSlide(),
+
+  // クロージング
+  const EndingSlide(),
 ];
