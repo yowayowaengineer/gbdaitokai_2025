@@ -60,7 +60,6 @@ class _WhoAmISlide3ContentState extends State<_WhoAmISlide3Content> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    final imageWidth = 600.0; // maxWidthと同じ値
 
     return GestureDetector(
       onTap: _onTap,

@@ -1,6 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_deck/flutter_deck.dart';
+import 'package:gbdaitokai_2025/theme/app_colors.dart';
 
 class EndingSlide extends FlutterDeckSlideWidget {
   const EndingSlide({super.key})
@@ -34,13 +35,13 @@ class _EndingSlideContentState extends State<_EndingSlideContent> {
     final textStyle1 = Theme.of(context).textTheme.displayLarge?.copyWith(
           fontSize: 200,
           fontWeight: FontWeight.bold,
-          color: Colors.blue[700],
+          color: AppColors.blue,
           height: 1.2,
         );
     final textStyle2 = Theme.of(context).textTheme.displayLarge?.copyWith(
           fontSize: 120,
           fontWeight: FontWeight.bold,
-          color: Colors.blue[700],
+          color: AppColors.pink,
           height: 1.2,
         );
 

@@ -7,6 +7,7 @@ class FlutterGrowthSlide extends FlutterDeckSlideWidget {
         configuration: const FlutterDeckSlideConfiguration(
           route: '/flutter-growth',
           title: 'Flutterの成長',
+          header: FlutterDeckHeaderConfiguration(title: 'Flutterの成長'),
         ),
       );
 
@@ -18,16 +19,7 @@ class FlutterGrowthSlide extends FlutterDeckSlideWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // タイトル
-            Text(
-              'Flutterの成長',
-              style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                fontWeight: FontWeight.bold,
-                color: Colors.blue[700],
-              ),
-            ),
             const SizedBox(height: 60),
-            // 統計カードのグリッド（2行×2列）
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 150.0),
@@ -46,7 +38,6 @@ class FlutterGrowthSlide extends FlutterDeckSlideWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        // 1行目
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -64,7 +55,6 @@ class FlutterGrowthSlide extends FlutterDeckSlideWidget {
             ),
           ],
         ),
-        // 2行目
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
