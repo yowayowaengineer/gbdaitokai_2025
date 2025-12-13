@@ -1,3 +1,4 @@
+import 'dart:html' as html if (dart.library.html) 'dart:html';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_deck/flutter_deck.dart';
@@ -28,12 +29,11 @@ class _WhoAmISlide4Content extends StatelessWidget {
   const _WhoAmISlide4Content();
 
   Future<void> _openUrl() async {
-    final url = Uri.parse(
-      'https://okayama.open-seminar.org/',
-    );
+    final urlString = 'https://okayama.open-seminar.org/';
     if (kIsWeb) {
-      await launchUrl(url, mode: LaunchMode.platformDefault);
+      html.window.open(urlString, '_blank');
     } else {
+      final url = Uri.parse(urlString);
       if (await canLaunchUrl(url)) {
         await launchUrl(url, mode: LaunchMode.platformDefault);
       }

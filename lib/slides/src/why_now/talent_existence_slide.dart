@@ -1,3 +1,4 @@
+import 'dart:html' as html if (dart.library.html) 'dart:html';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_deck/flutter_deck.dart';
@@ -43,10 +44,11 @@ class _TalentExistenceSlideContentState
   }
 
   Future<void> _openQiitaUrl() async {
-    final url = Uri.parse('https://qiita.com/advent-calendar/2025/flutter');
+    final urlString = 'https://qiita.com/advent-calendar/2025/flutter';
     if (kIsWeb) {
-      await launchUrl(url, mode: LaunchMode.platformDefault);
+      html.window.open(urlString, '_blank');
     } else {
+      final url = Uri.parse(urlString);
       if (await canLaunchUrl(url)) {
         await launchUrl(url, mode: LaunchMode.platformDefault);
       }
@@ -54,10 +56,11 @@ class _TalentExistenceSlideContentState
   }
 
   Future<void> _openXUrl() async {
-    final url = Uri.parse('https://x.com/yakuran1');
+    final urlString = 'https://x.com/yakuran1';
     if (kIsWeb) {
-      await launchUrl(url, mode: LaunchMode.platformDefault);
+      html.window.open(urlString, '_blank');
     } else {
+      final url = Uri.parse(urlString);
       if (await canLaunchUrl(url)) {
         await launchUrl(url, mode: LaunchMode.platformDefault);
       }

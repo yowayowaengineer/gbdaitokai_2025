@@ -1,3 +1,4 @@
+import 'dart:html' as html if (dart.library.html) 'dart:html';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_deck/flutter_deck.dart';
@@ -26,12 +27,11 @@ class _FlutterAppContestSlideContent extends StatelessWidget {
   const _FlutterAppContestSlideContent();
 
   Future<void> _openUrl() async {
-    final url = Uri.parse(
-      'https://qiita.com/yowayowaengineer/items/0a25ee643119d4984d28',
-    );
+    final urlString = 'https://qiita.com/yowayowaengineer/items/0a25ee643119d4984d28';
     if (kIsWeb) {
-      await launchUrl(url, mode: LaunchMode.platformDefault);
+      html.window.open(urlString, '_blank');
     } else {
+      final url = Uri.parse(urlString);
       if (await canLaunchUrl(url)) {
         await launchUrl(url, mode: LaunchMode.platformDefault);
       }

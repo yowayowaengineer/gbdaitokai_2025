@@ -1,3 +1,4 @@
+import 'dart:html' as html if (dart.library.html) 'dart:html';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_deck/flutter_deck.dart';
@@ -26,10 +27,11 @@ class _OurCommunity3SlideContent extends StatelessWidget {
   const _OurCommunity3SlideContent();
 
   Future<void> _openConnpassUrl() async {
-    final url = Uri.parse('https://okayama-dot-flutter.connpass.com/');
+    final urlString = 'https://okayama-dot-flutter.connpass.com/';
     if (kIsWeb) {
-      await launchUrl(url, mode: LaunchMode.platformDefault);
+      html.window.open(urlString, '_blank');
     } else {
+      final url = Uri.parse(urlString);
       if (await canLaunchUrl(url)) {
         await launchUrl(url, mode: LaunchMode.platformDefault);
       }

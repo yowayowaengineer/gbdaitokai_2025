@@ -1,3 +1,4 @@
+import 'dart:html' as html if (dart.library.html) 'dart:html';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_deck/flutter_deck.dart';
@@ -50,12 +51,11 @@ class _WhoAmISlide3ContentState extends State<_WhoAmISlide3Content> {
   }
 
   Future<void> _openUrl() async {
-    final url = Uri.parse(
-      'https://pub.dev/packages/gradient_like_css',
-    );
+    final urlString = 'https://pub.dev/packages/gradient_like_css';
     if (kIsWeb) {
-      await launchUrl(url, mode: LaunchMode.platformDefault);
+      html.window.open(urlString, '_blank');
     } else {
+      final url = Uri.parse(urlString);
       if (await canLaunchUrl(url)) {
         await launchUrl(url, mode: LaunchMode.platformDefault);
       }
