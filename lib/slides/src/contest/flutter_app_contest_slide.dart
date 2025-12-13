@@ -29,7 +29,7 @@ class _FlutterAppContestSlideContent extends StatelessWidget {
       'https://qiita.com/yowayowaengineer/items/0a25ee643119d4984d28',
     );
     if (await canLaunchUrl(url)) {
-      await launchUrl(url, mode: LaunchMode.externalApplication);
+      await launchUrl(url, mode: LaunchMode.platformDefault);
     }
   }
 

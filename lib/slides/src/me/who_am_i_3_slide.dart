@@ -53,7 +53,7 @@ class _WhoAmISlide3ContentState extends State<_WhoAmISlide3Content> {
       'https://pub.dev/packages/gradient_like_css',
     );
     if (await canLaunchUrl(url)) {
-      await launchUrl(url, mode: LaunchMode.externalApplication);
+      await launchUrl(url, mode: LaunchMode.platformDefault);
     }
   }
 

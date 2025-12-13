@@ -31,7 +31,7 @@ class _WhoAmISlide2Content extends StatelessWidget {
       'https://pscsrv.co.jp/',
     );
     if (await canLaunchUrl(url)) {
-      await launchUrl(url, mode: LaunchMode.externalApplication);
+      await launchUrl(url, mode: LaunchMode.platformDefault);
     }
   }
 

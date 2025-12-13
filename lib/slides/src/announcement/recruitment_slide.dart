@@ -29,7 +29,7 @@ class _RecruitmentSlideContent extends StatelessWidget {
       'https://discord.gg/x4bgEnSM',
     );
     if (await canLaunchUrl(url)) {
-      await launchUrl(url, mode: LaunchMode.externalApplication);
+      await launchUrl(url, mode: LaunchMode.platformDefault);
     }
   }
 

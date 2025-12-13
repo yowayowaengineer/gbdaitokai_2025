@@ -44,14 +44,14 @@ class _TalentExistenceSlideContentState
   Future<void> _openQiitaUrl() async {
     final url = Uri.parse('https://qiita.com/advent-calendar/2025/flutter');
     if (await canLaunchUrl(url)) {
-      await launchUrl(url, mode: LaunchMode.externalApplication);
+      await launchUrl(url, mode: LaunchMode.platformDefault);
     }
   }
 
   Future<void> _openXUrl() async {
     final url = Uri.parse('https://x.com/yakuran1');
     if (await canLaunchUrl(url)) {
-      await launchUrl(url, mode: LaunchMode.externalApplication);
+      await launchUrl(url, mode: LaunchMode.platformDefault);
     }
   }
 

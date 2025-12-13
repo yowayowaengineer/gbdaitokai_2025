@@ -27,7 +27,7 @@ class _OurCommunity3SlideContent extends StatelessWidget {
   Future<void> _openConnpassUrl() async {
     final url = Uri.parse('https://okayama-dot-flutter.connpass.com/');
     if (await canLaunchUrl(url)) {
-      await launchUrl(url, mode: LaunchMode.externalApplication);
+      await launchUrl(url, mode: LaunchMode.platformDefault);
     }
   }
 

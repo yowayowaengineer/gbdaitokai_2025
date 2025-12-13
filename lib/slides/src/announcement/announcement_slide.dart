@@ -5,13 +5,13 @@ import 'package:url_launcher/url_launcher.dart';
 
 class AnnouncementSlide extends FlutterDeckSlideWidget {
   const AnnouncementSlide({super.key})
-      : super(
-          configuration: const FlutterDeckSlideConfiguration(
-            route: '/announcement',
-            title: '告知',
-            header: FlutterDeckHeaderConfiguration(title: '告知！'),
-          ),
-        );
+    : super(
+        configuration: const FlutterDeckSlideConfiguration(
+          route: '/announcement',
+          title: '告知',
+          header: FlutterDeckHeaderConfiguration(title: '告知！'),
+        ),
+      );
 
   @override
   FlutterDeckSlide build(BuildContext context) {
@@ -29,7 +29,7 @@ class _AnnouncementSlideContent extends StatelessWidget {
       'https://okayama-dot-flutter.connpass.com/event/378340/',
     );
     if (await canLaunchUrl(url)) {
-      await launchUrl(url, mode: LaunchMode.externalApplication);
+      await launchUrl(url, mode: LaunchMode.platformDefault);
     }
   }
 

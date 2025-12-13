@@ -31,7 +31,7 @@ class _WhoAmISlide4Content extends StatelessWidget {
       'https://okayama.open-seminar.org/',
     );
     if (await canLaunchUrl(url)) {
-      await launchUrl(url, mode: LaunchMode.externalApplication);
+      await launchUrl(url, mode: LaunchMode.platformDefault);
     }
   }
 
