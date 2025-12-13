@@ -79,17 +79,14 @@ class _AnimatedFooterWidgetState extends State<_AnimatedFooterWidget>
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: const Duration(minutes: 10),
+      duration: const Duration(minutes: 20),
       vsync: this,
     )..repeat();
 
     _animation = Tween<double>(
       begin: 0.0,
       end: 1.0,
-    ).animate(CurvedAnimation(
-      parent: _controller,
-      curve: Curves.linear,
-    ));
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.linear));
 
     _controller.addListener(() {
       final previousDirection = _isMovingRight;
@@ -143,11 +140,13 @@ class _AnimatedFooterWidgetState extends State<_AnimatedFooterWidget>
 
                 if (_animation.value <= 0.5) {
                   final progress = _animation.value * 2.0;
-                  position = rightEndPosition -
+                  position =
+                      rightEndPosition -
                       (rightEndPosition - logoPosition + imageSize) * progress;
                 } else {
                   final progress = (_animation.value - 0.5) * 2.0;
-                  position = logoPosition -
+                  position =
+                      logoPosition -
                       imageSize +
                       (rightEndPosition - logoPosition + imageSize) * progress;
                 }
