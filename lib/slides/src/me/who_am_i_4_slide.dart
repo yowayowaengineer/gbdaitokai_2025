@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_deck/flutter_deck.dart';
 import 'package:gap/gap.dart';
@@ -30,8 +31,12 @@ class _WhoAmISlide4Content extends StatelessWidget {
     final url = Uri.parse(
       'https://okayama.open-seminar.org/',
     );
-    if (await canLaunchUrl(url)) {
+    if (kIsWeb) {
       await launchUrl(url, mode: LaunchMode.platformDefault);
+    } else {
+      if (await canLaunchUrl(url)) {
+        await launchUrl(url, mode: LaunchMode.platformDefault);
+      }
     }
   }
 

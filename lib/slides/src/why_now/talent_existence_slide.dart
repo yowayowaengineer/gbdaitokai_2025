@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_deck/flutter_deck.dart';
 import 'package:gap/gap.dart';
@@ -43,15 +44,23 @@ class _TalentExistenceSlideContentState
 
   Future<void> _openQiitaUrl() async {
     final url = Uri.parse('https://qiita.com/advent-calendar/2025/flutter');
-    if (await canLaunchUrl(url)) {
+    if (kIsWeb) {
       await launchUrl(url, mode: LaunchMode.platformDefault);
+    } else {
+      if (await canLaunchUrl(url)) {
+        await launchUrl(url, mode: LaunchMode.platformDefault);
+      }
     }
   }
 
   Future<void> _openXUrl() async {
     final url = Uri.parse('https://x.com/yakuran1');
-    if (await canLaunchUrl(url)) {
+    if (kIsWeb) {
       await launchUrl(url, mode: LaunchMode.platformDefault);
+    } else {
+      if (await canLaunchUrl(url)) {
+        await launchUrl(url, mode: LaunchMode.platformDefault);
+      }
     }
   }
 

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_deck/flutter_deck.dart';
 import 'package:gap/gap.dart';
@@ -26,8 +27,12 @@ class _OurCommunity3SlideContent extends StatelessWidget {
 
   Future<void> _openConnpassUrl() async {
     final url = Uri.parse('https://okayama-dot-flutter.connpass.com/');
-    if (await canLaunchUrl(url)) {
+    if (kIsWeb) {
       await launchUrl(url, mode: LaunchMode.platformDefault);
+    } else {
+      if (await canLaunchUrl(url)) {
+        await launchUrl(url, mode: LaunchMode.platformDefault);
+      }
     }
   }
 

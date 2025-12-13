@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_deck/flutter_deck.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -52,8 +53,12 @@ class _WhoAmISlide3ContentState extends State<_WhoAmISlide3Content> {
     final url = Uri.parse(
       'https://pub.dev/packages/gradient_like_css',
     );
-    if (await canLaunchUrl(url)) {
+    if (kIsWeb) {
       await launchUrl(url, mode: LaunchMode.platformDefault);
+    } else {
+      if (await canLaunchUrl(url)) {
+        await launchUrl(url, mode: LaunchMode.platformDefault);
+      }
     }
   }
 
